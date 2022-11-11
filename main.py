@@ -1,7 +1,18 @@
+"""
+Character_creation_module is a package of role play game.
+It contains several functions, that describe a character and
+it's abilities using a random module as an immitation of dices.
+Random part of functions is connected to the parametr char_class.
+"""
 from random import randint
+from graphic_arts.start_game_banner import run_screensaver
 
 
 def attack(char_name: str, char_class: str) -> str:
+    """
+    Return string with damage points, which the character make to the enemy.
+    The result depends on char_class parametr and random part.
+    """
     if char_class == 'warrior':
         return (f'{char_name} нанёс урон противнику '
                 f'равный {5 + randint(3, 5)}')
@@ -15,6 +26,10 @@ def attack(char_name: str, char_class: str) -> str:
 
 
 def defence(char_name: str, char_class: str) -> str:
+    """
+    Return string with damage points, which the character can block.
+    The result depends on char_class parametr and random part.
+    """
     if char_class == 'warrior':
         return (f'{char_name} блокировал {10 + randint(5, 10)} урона')
     if char_class == 'mage':
@@ -25,6 +40,10 @@ def defence(char_name: str, char_class: str) -> str:
 
 
 def special(char_name: str, char_class: str) -> str:
+    """
+    Return string with information of special ability and it's points.
+    The result depends on char_class parametr and random part.
+    """
     if char_class == 'warrior':
         return (f'{char_name} применил специальное умение '
                 f'«Выносливость {80 + 25}»')
@@ -36,6 +55,11 @@ def special(char_name: str, char_class: str) -> str:
 
 
 def start_training(char_name: str, char_class: str) -> str:
+    """
+    Return strings, which based on parametr char_class.
+    Then the function describes training character skills by it's choice -
+    and returns 3 functions - attack, defence and special.
+    """
     if char_class == 'warrior':
         print(f'{char_name}, ты Воитель — отличный боец ближнего боя.')
     if char_class == 'mage':
@@ -60,6 +84,10 @@ def start_training(char_name: str, char_class: str) -> str:
 
 
 def choice_char_class() -> str:
+    """
+    Initialize the charachter with class.
+    The variable char_class is assigned a value.
+    """
     approve_choice: str = None
     char_class: str = None
     while approve_choice != 'y':
@@ -81,7 +109,16 @@ def choice_char_class() -> str:
     return char_class
 
 
-def main() -> str:
+if __name__ == '__main__':
+    """
+    Trigger a start of the game.
+    It returns several strings, where the user can enter it's name and
+    choose a class of character, in this way the variable char_name
+    is assigned the value.
+    In the end the function returns choice_char_class function
+    and start_training function.
+    """
+    run_screensaver()
     print('Приветствую тебя, искатель приключений!')
     print('Прежде чем начать игру...')
     char_name: str = input('...назови себя: ')
@@ -91,6 +128,3 @@ def main() -> str:
     print('Воитель, Маг, Лекарь')
     char_class: str = choice_char_class()
     print(start_training(char_name, char_class))
-
-
-main()
